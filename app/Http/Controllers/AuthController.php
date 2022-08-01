@@ -47,7 +47,8 @@ class AuthController extends Controller
         }else{
             return response()->json([
                 'message' => 'register was successfully',
-                'user' => $user,
+                'user' => $user
+//                'token' => $token
             ]);
         }
     }
@@ -71,8 +72,8 @@ class AuthController extends Controller
 
         return response()->json([
             'user' => Auth::user(),
-            'token' => $token,
-            'token_type' => 'Bearer'
+            'token_type' => 'Bearer',
+            'token' => $token
         ]);
     }
 

@@ -9,7 +9,7 @@ servers:
 paths:
   /api/v1/questions:
     get:
-      summary: 'Display a listing of the resource.'
+      summary: 'Display a listing of the question resource.'
       description: ''
       parameters:
         -
@@ -27,67 +27,23 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  data:
-                    -
-                      id: 1
-                      type: Questions
-                      attribute:
-                        name: first
-                        type: size
-                        options: null
-                    -
-                      id: 2
-                      type: Questions
-                      attribute:
-                        name: asdas
-                        type: ww
-                        options: ee
-                    -
-                      id: 3
-                      type: Questions
-                      attribute:
-                        name: 'this is a q'
-                        type: type
-                        options: null
+                  message: Unauthenticated.
                 properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        type: Questions
-                        attribute:
-                          name: first
-                          type: size
-                          options: null
-                      -
-                        id: 2
-                        type: Questions
-                        attribute:
-                          name: asdas
-                          type: ww
-                          options: ee
-                      -
-                        id: 3
-                        type: Questions
-                        attribute:
-                          name: 'this is a q'
-                          type: type
-                          options: null
-                    items:
-                      type: object
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
     post:
-      summary: 'Store a newly created question resource in storage.'
+      summary: 'Store a new created question resource in storage.'
       description: ''
       parameters:
         -
@@ -116,9 +72,9 @@ paths:
                     id: 1
                     type: Questions
                     attribute:
-                      name: first
-                      type: size
-                      options: null
+                      name: 'whats your last name?'
+                      type: descriptive
+                      options: '2 , 3'
                 properties:
                   data:
                     type: object
@@ -126,9 +82,9 @@ paths:
                       id: 1
                       type: Questions
                       attribute:
-                        name: first
-                        type: size
-                        options: null
+                        name: 'whats your last name?'
+                        type: descriptive
+                        options: '2 , 3'
       tags:
         - Endpoints
       requestBody:
@@ -140,23 +96,23 @@ paths:
               properties:
                 name:
                   type: string
-                  description: ''
-                  example: est
+                  description: 'question text.'
+                  example: eum
                 type:
                   type: string
-                  description: ''
-                  example: qui
+                  description: 'type of question.'
+                  example: laboriosam
                 options:
                   type: string
-                  description: ''
-                  example: sapiente
+                  description: 'radio button optional answer (array).'
+                  example: a
               required:
                 - name
                 - type
       security: []
   '/api/v1/questions/{id}':
     get:
-      summary: 'Display the specified resource.'
+      summary: 'Display the specified question resource.'
       description: ''
       parameters:
         -
@@ -185,9 +141,9 @@ paths:
                     id: 1
                     type: Questions
                     attribute:
-                      name: first
-                      type: size
-                      options: null
+                      name: 'whats your last name?'
+                      type: descriptive
+                      options: '2 , 3'
                 properties:
                   data:
                     type: object
@@ -195,14 +151,14 @@ paths:
                       id: 1
                       type: Questions
                       attribute:
-                        name: first
-                        type: size
-                        options: null
+                        name: 'whats your last name?'
+                        type: descriptive
+                        options: '2 , 3'
       tags:
         - Endpoints
       security: []
     put:
-      summary: 'Update the specified resource in storage.'
+      summary: 'Update the specified question resource in storage.'
       description: ''
       parameters:
         -
@@ -222,9 +178,28 @@ paths:
       responses: {  }
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: sequi
+                type:
+                  type: string
+                  description: ''
+                  example: quibusdam
+                options:
+                  type: string
+                  description: ''
+                  example: minus
       security: []
     delete:
-      summary: 'Remove the specified resource from storage.'
+      summary: 'Remove the specified question resource from storage.'
       description: ''
       parameters:
         -
@@ -250,7 +225,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: 17
+        example: 6
         required: true
         schema:
           type: integer
@@ -274,92 +249,18 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  data:
-                    -
-                      id: 2
-                      type: Users
-                      attribute:
-                        name: ali
-                        email: ali@asd.cpas
-                    -
-                      id: 4
-                      type: Users
-                      attribute:
-                        name: ali
-                        email: this@isgmail.ha
-                    -
-                      id: 5
-                      type: Users
-                      attribute:
-                        name: asd
-                        email: aasd@asd.asd
-                    -
-                      id: 6
-                      type: Users
-                      attribute:
-                        name: asd
-                        email: aasd@asd.asds
-                    -
-                      id: 7
-                      type: Users
-                      attribute:
-                        name: ali
-                        email: ali@asd.cpasaas
-                    -
-                      id: 8
-                      type: Users
-                      attribute:
-                        name: ali
-                        email: ali@asd.cpasaasas
+                  message: Unauthenticated.
                 properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 2
-                        type: Users
-                        attribute:
-                          name: ali
-                          email: ali@asd.cpas
-                      -
-                        id: 4
-                        type: Users
-                        attribute:
-                          name: ali
-                          email: this@isgmail.ha
-                      -
-                        id: 5
-                        type: Users
-                        attribute:
-                          name: asd
-                          email: aasd@asd.asd
-                      -
-                        id: 6
-                        type: Users
-                        attribute:
-                          name: asd
-                          email: aasd@asd.asds
-                      -
-                        id: 7
-                        type: Users
-                        attribute:
-                          name: ali
-                          email: ali@asd.cpasaas
-                      -
-                        id: 8
-                        type: Users
-                        attribute:
-                          name: ali
-                          email: ali@asd.cpasaasas
-                    items:
-                      type: object
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
@@ -405,732 +306,18 @@ paths:
           schema:
             type: string
       responses:
-        404:
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'No query results for model [App\Models\User] 1'
-                  exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-                  file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
-                  line: 380
-                  trace:
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
-                      line: 356
-                      function: prepareException
-                      class: Illuminate\Foundation\Exceptions\Handler
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php'
-                      line: 54
-                      function: render
-                      class: Illuminate\Foundation\Exceptions\Handler
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php'
-                      line: 51
-                      function: render
-                      class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 185
-                      function: handleException
-                      class: Illuminate\Routing\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 126
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 102
-                      function: handleRequest
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 54
-                      function: handleRequestUsingNamedLimiter
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 726
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 703
-                      function: runRouteWithinStack
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 667
-                      function: runRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 656
-                      function: dispatchToRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 167
-                      function: dispatch
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 141
-                      function: 'Illuminate\Foundation\Http\{closure}'
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                      line: 31
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                      line: 40
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                      line: 27
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                      line: 86
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
-                      line: 62
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\HandleCors
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
-                      line: 39
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\TrustProxies
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 142
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 111
-                      function: sendRequestThroughRouter
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 299
-                      function: handle
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 287
-                      function: callLaravelOrLumenRoute
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 89
-                      function: makeApiCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 45
-                      function: makeResponseCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 35
-                      function: makeResponseCallIfConditionsPass
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 222
-                      function: __invoke
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 179
-                      function: iterateThroughStrategies
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 116
-                      function: fetchResponses
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 123
-                      function: processRoute
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 80
-                      function: extractEndpointsInfoFromLaravelApp
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 56
-                      function: extractEndpointsInfoAndWriteToDisk
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                      line: 55
-                      function: get
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 36
-                      function: handle
-                      class: Knuckles\Scribe\Commands\GenerateDocumentation
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                      line: 41
-                      function: 'Illuminate\Container\{closure}'
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 93
-                      function: unwrapIfClosure
-                      class: Illuminate\Container\Util
-                      type: '::'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 37
-                      function: callBoundMethod
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                      line: 651
-                      function: call
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 139
-                      function: call
-                      class: Illuminate\Container\Container
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Command\Command.php'
-                      line: 308
-                      function: execute
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 124
-                      function: run
-                      class: Symfony\Component\Console\Command\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                      line: 998
-                      function: run
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                      line: 299
-                      function: doRunCommand
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                      line: 171
-                      function: doRun
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                      line: 102
-                      function: run
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                      line: 129
-                      function: run
-                      class: Illuminate\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\amira\Desktop\gym\laravel\artisan'
-                      line: 37
-                      function: handle
-                      class: Illuminate\Foundation\Console\Kernel
-                      type: '->'
+                  message: Unauthenticated.
                 properties:
                   message:
                     type: string
-                    example: 'No query results for model [App\Models\User] 1'
-                  exception:
-                    type: string
-                    example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-                  file:
-                    type: string
-                    example: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
-                  line:
-                    type: integer
-                    example: 380
-                  trace:
-                    type: array
-                    example:
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
-                        line: 356
-                        function: prepareException
-                        class: Illuminate\Foundation\Exceptions\Handler
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php'
-                        line: 54
-                        function: render
-                        class: Illuminate\Foundation\Exceptions\Handler
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php'
-                        line: 51
-                        function: render
-                        class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 185
-                        function: handleException
-                        class: Illuminate\Routing\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 126
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 102
-                        function: handleRequest
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 54
-                        function: handleRequestUsingNamedLimiter
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 726
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 703
-                        function: runRouteWithinStack
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 667
-                        function: runRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 656
-                        function: dispatchToRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 167
-                        function: dispatch
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 141
-                        function: 'Illuminate\Foundation\Http\{closure}'
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                        line: 31
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                        line: 40
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                        line: 27
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                        line: 86
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
-                        line: 62
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\HandleCors
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
-                        line: 39
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\TrustProxies
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 142
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 111
-                        function: sendRequestThroughRouter
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 299
-                        function: handle
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 287
-                        function: callLaravelOrLumenRoute
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 89
-                        function: makeApiCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 45
-                        function: makeResponseCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 35
-                        function: makeResponseCallIfConditionsPass
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 222
-                        function: __invoke
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 179
-                        function: iterateThroughStrategies
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 116
-                        function: fetchResponses
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 123
-                        function: processRoute
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 80
-                        function: extractEndpointsInfoFromLaravelApp
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 56
-                        function: extractEndpointsInfoAndWriteToDisk
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                        line: 55
-                        function: get
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 36
-                        function: handle
-                        class: Knuckles\Scribe\Commands\GenerateDocumentation
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                        line: 41
-                        function: 'Illuminate\Container\{closure}'
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 93
-                        function: unwrapIfClosure
-                        class: Illuminate\Container\Util
-                        type: '::'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 37
-                        function: callBoundMethod
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                        line: 651
-                        function: call
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 139
-                        function: call
-                        class: Illuminate\Container\Container
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Command\Command.php'
-                        line: 308
-                        function: execute
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 124
-                        function: run
-                        class: Symfony\Component\Console\Command\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                        line: 998
-                        function: run
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                        line: 299
-                        function: doRunCommand
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\symfony\console\Application.php'
-                        line: 171
-                        function: doRun
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                        line: 102
-                        function: run
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                        line: 129
-                        function: run
-                        class: Illuminate\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\amira\Desktop\gym\laravel\artisan'
-                        line: 37
-                        function: handle
-                        class: Illuminate\Foundation\Console\Kernel
-                        type: '->'
-                    items:
-                      type: object
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
@@ -1183,7 +370,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 2
+        example: 1
         required: true
         schema:
           type: integer
@@ -1219,19 +406,19 @@ paths:
                 email:
                   type: string
                   description: 'The email of the user'
-                  example: laboriosam
+                  example: voluptate
                 name:
                   type: string
                   description: 'The name of the user'
-                  example: dignissimos
+                  example: ipsum
                 password:
                   type: string
                   description: 'The password of the user'
-                  example: rerum
+                  example: sint
                 confirm_password:
                   type: string
                   description: 'The confirm_password of the user'
-                  example: ea
+                  example: earum
               required:
                 - email
                 - name
@@ -1270,11 +457,11 @@ paths:
                 email:
                   type: string
                   description: 'The email of the user'
-                  example: dolore
+                  example: repudiandae
                 password:
                   type: string
                   description: 'The password of the user'
-                  example: delectus
+                  example: sit
               required:
                 - email
                 - password

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DesAnswerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,10 +30,12 @@ Route::prefix('v1')->group(function () {
 
     // Authenticated Routes
 
-//    Route::middleware('auth:api')->group(function () {
+    Route::middleware('auth:api')->group(function () {
         Route::apiResource('questions' , QuestionsController::class);
         Route::apiResource('users' , UsersController::class);
-//    });
+        Route::get('des_answer' , [DesAnswerController::class , 'index']);
+        Route::post('des_answer' , [DesAnswerController::class , 'store']);
+    });
 
     // END Authenticated Routes
 

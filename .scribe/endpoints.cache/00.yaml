@@ -8,7 +8,7 @@ endpoints:
       - GET
     uri: api/v1/questions
     metadata:
-      title: 'Display a listing of the resource.'
+      title: 'Display a listing of the question resource.'
       description: ''
       authenticated: false
       custom: []
@@ -20,13 +20,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"data":[{"id":1,"type":"Questions","attribute":{"name":"first","type":"size","options":null}},{"id":2,"type":"Questions","attribute":{"name":"asdas","type":"ww","options":"ee"}},{"id":3,"type":"Questions","attribute":{"name":"this is a q","type":"type","options":null}}]}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '58'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -35,7 +33,7 @@ endpoints:
       - POST
     uri: api/v1/questions
     metadata:
-      title: 'Store a newly created question resource in storage.'
+      title: 'Store a new created question resource in storage.'
       description: ''
       authenticated: false
       custom: []
@@ -47,29 +45,29 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: ''
+        description: 'question text.'
         required: true
-        example: est
+        example: eum
         type: string
         custom: []
       type:
         name: type
-        description: ''
+        description: 'type of question.'
         required: true
-        example: qui
+        example: laboriosam
         type: string
         custom: []
       options:
         name: options
-        description: ''
+        description: 'radio button optional answer (array).'
         required: false
-        example: sapiente
+        example: a
         type: string
         custom: []
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"type":"Questions","attribute":{"name":"first","type":"size","options":null}}}'
+        content: '{"data":{"id":1,"type":"Questions","attribute":{"name":"whats your last name?","type":"descriptive","options":"2 , 3"}}}'
         headers: []
         description: '0'
     responseFields: []
@@ -78,7 +76,7 @@ endpoints:
       - GET
     uri: 'api/v1/questions/{id}'
     metadata:
-      title: 'Display the specified resource.'
+      title: 'Display the specified question resource.'
       description: ''
       authenticated: false
       custom: []
@@ -90,7 +88,7 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 17
+        example: 6
         type: integer
         custom: []
     queryParameters: []
@@ -98,7 +96,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"type":"Questions","attribute":{"name":"first","type":"size","options":null}}}'
+        content: '{"data":{"id":1,"type":"Questions","attribute":{"name":"whats your last name?","type":"descriptive","options":"2 , 3"}}}'
         headers: []
         description: '0'
     responseFields: []
@@ -108,7 +106,7 @@ endpoints:
       - PATCH
     uri: 'api/v1/questions/{id}'
     metadata:
-      title: 'Update the specified resource in storage.'
+      title: 'Update the specified question resource in storage.'
       description: ''
       authenticated: false
       custom: []
@@ -124,7 +122,28 @@ endpoints:
         type: integer
         custom: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: false
+        example: sequi
+        type: string
+        custom: []
+      type:
+        name: type
+        description: ''
+        required: false
+        example: quibusdam
+        type: string
+        custom: []
+      options:
+        name: options
+        description: ''
+        required: false
+        example: minus
+        type: string
+        custom: []
     responses: []
     responseFields: []
   -
@@ -132,7 +151,7 @@ endpoints:
       - DELETE
     uri: 'api/v1/questions/{id}'
     metadata:
-      title: 'Remove the specified resource from storage.'
+      title: 'Remove the specified question resource from storage.'
       description: ''
       authenticated: false
       custom: []
@@ -168,13 +187,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"data":[{"id":2,"type":"Users","attribute":{"name":"ali","email":"ali@asd.cpas"}},{"id":4,"type":"Users","attribute":{"name":"ali","email":"this@isgmail.ha"}},{"id":5,"type":"Users","attribute":{"name":"asd","email":"aasd@asd.asd"}},{"id":6,"type":"Users","attribute":{"name":"asd","email":"aasd@asd.asds"}},{"id":7,"type":"Users","attribute":{"name":"ali","email":"ali@asd.cpasaas"}},{"id":8,"type":"Users","attribute":{"name":"ali","email":"ali@asd.cpasaasas"}}]}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '57'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -212,434 +229,18 @@ endpoints:
         name: id
         description: 'The ID of the user.'
         required: true
-        example: 2
+        example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 404
-        content: |-
-          {
-              "message": "No query results for model [App\\Models\\User] 1",
-              "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
-              "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-              "line": 380,
-              "trace": [
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-                      "line": 356,
-                      "function": "prepareException",
-                      "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
-                      "line": 54,
-                      "function": "render",
-                      "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-                      "line": 51,
-                      "function": "render",
-                      "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 185,
-                      "function": "handleException",
-                      "class": "Illuminate\\Routing\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 126,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 102,
-                      "function": "handleRequest",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 54,
-                      "function": "handleRequestUsingNamedLimiter",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 726,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 703,
-                      "function": "runRouteWithinStack",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 667,
-                      "function": "runRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 656,
-                      "function": "dispatchToRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 167,
-                      "function": "dispatch",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
-                      "function": "Illuminate\\Foundation\\Http\\{closure}",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
-                      "line": 31,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
-                      "line": 40,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-                      "line": 27,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
-                      "line": 86,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php",
-                      "line": 62,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php",
-                      "line": 39,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 142,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 111,
-                      "function": "sendRequestThroughRouter",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 299,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 287,
-                      "function": "callLaravelOrLumenRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 89,
-                      "function": "makeApiCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 45,
-                      "function": "makeResponseCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 35,
-                      "function": "makeResponseCallIfConditionsPass",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 222,
-                      "function": "__invoke",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 179,
-                      "function": "iterateThroughStrategies",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 116,
-                      "function": "fetchResponses",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 123,
-                      "function": "processRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 80,
-                      "function": "extractEndpointsInfoFromLaravelApp",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 56,
-                      "function": "extractEndpointsInfoAndWriteToDisk",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
-                      "line": 55,
-                      "function": "get",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 36,
-                      "function": "handle",
-                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
-                      "line": 41,
-                      "function": "Illuminate\\Container\\{closure}",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 93,
-                      "function": "unwrapIfClosure",
-                      "class": "Illuminate\\Container\\Util",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 37,
-                      "function": "callBoundMethod",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-                      "line": 651,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 139,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\Container",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\symfony\\console\\Command\\Command.php",
-                      "line": 308,
-                      "function": "execute",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 124,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Command\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\symfony\\console\\Application.php",
-                      "line": 998,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\symfony\\console\\Application.php",
-                      "line": 299,
-                      "function": "doRunCommand",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\symfony\\console\\Application.php",
-                      "line": 171,
-                      "function": "doRun",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
-                      "line": 102,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-                      "line": 129,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\Users\\amira\\Desktop\\gym\\laravel\\artisan",
-                      "line": 37,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Console\\Kernel",
-                      "type": "->"
-                  }
-              ]
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '56'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -661,7 +262,7 @@ endpoints:
         name: id
         description: 'The ID of the user.'
         required: true
-        example: 2
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -685,7 +286,7 @@ endpoints:
         name: id
         description: 'The ID of the user.'
         required: true
-        example: 2
+        example: 1
         type: integer
         custom: []
     queryParameters: []

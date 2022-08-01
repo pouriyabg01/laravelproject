@@ -25,7 +25,4 @@ class DescriptiveAnswer extends Model
     {
         return $this->belongsTo(Question::class);
     }
-    protected $casts = [
-        'answer' => 'array'
-    ];
 }

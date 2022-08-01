@@ -20,28 +20,28 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: laboriosam
+        example: voluptate
         type: string
         custom: []
       name:
         name: name
         description: 'The name of the user'
         required: true
-        example: dignissimos
+        example: ipsum
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: rerum
+        example: sint
         type: string
         custom: []
       confirm_password:
         name: confirm_password
         description: 'The confirm_password of the user'
         required: true
-        example: ea
+        example: earum
         type: string
         custom: []
     responses: []
@@ -65,14 +65,14 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: dolore
+        example: repudiandae
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: delectus
+        example: sit
         type: string
         custom: []
     responses: []
