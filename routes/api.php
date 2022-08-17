@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DesAnswerController;
+use App\Http\Controllers\RecordAnswerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +36,9 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('users' , UsersController::class);
         Route::get('des_answer' , [DesAnswerController::class , 'index']);
         Route::post('des_answer' , [DesAnswerController::class , 'store']);
+        Route::post('record_answer' , [RecordAnswerController::class , 'store']);
+        Route::get('record_answer' , [RecordAnswerController::class , 'index']);
+//        Route::get('record_answer' , [RecordAnswerController::class , 'show']);
     });
 
     // END Authenticated Routes

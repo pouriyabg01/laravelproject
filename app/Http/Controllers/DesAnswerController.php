@@ -50,11 +50,12 @@ class DesAnswerController extends Controller
             ]);
         }
 
-        if($desAnswer) {
-            return new DesAnswerResource($desAnswer);
-        }else{
-            return response()->json('error');
-        }
+        if($desAnswer)
+            return DesAnswerResource::collection(DescriptiveAnswer::all()->where('user_id' , auth()->user()->id));
+
+        return response()->json('error');
+
+
     }
 
     /**
